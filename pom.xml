@@ -91,7 +91,7 @@
 		</repository>
 		<repository>
 		  <id>github</id>
-		  <url>https://maven.pkg.github.com/spsmexico/*</url>
+		  <url>https://maven.pkg.github.com/spsmexico/mulesoft-github-actions-domain</url>
 		  <snapshots>
 		    <enabled>true</enabled>
 		  </snapshots>
