@@ -17,7 +17,7 @@ jobs:
           distribution: 'adopt'
           cache: 'maven'
           server-id: maven # Value of the distributionManagement/repository/id field of the pom.xml
-          #server-username: ${{ secrets.GITHUB_PACKAGES_USER }} # env variable for username in deploy
+          server-username: rortega-sps # env variable for username in deploy
           server-password: ${{ github.TOKEN }} # env variable for token in deploy
       - run: |
          mvn --batch-mode verify
