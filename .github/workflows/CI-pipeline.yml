@@ -18,7 +18,7 @@ jobs:
           cache: 'maven'
           server-id: maven # Value of the distributionManagement/repository/id field of the pom.xml
           server-username: rortega-sps # env variable for username in deploy
-          server-password: ${{ secrets.GITHUB_PACKAGES_TOKEN }} # env variable for token in deploy
+          server-password: ${{ secrets.PACKAGES_TOKEN }} # env variable for token in deploy
       - run: |
          mvn --batch-mode verify
          mkdir staging && cp target/*.jar staging
