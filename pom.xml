@@ -63,13 +63,6 @@
 			<version>1.2.1</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
-		<dependency>
-			<groupId>com.mycompany</groupId>
-			<artifactId>lmt-mule-domain</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-			<classifier>mule-domain</classifier>
-			<scope>provided</scope>
-		</dependency>
 	</dependencies>
 
 	<repositories>
@@ -85,6 +78,17 @@
 			<url>https://repository.mulesoft.org/releases/</url>
 			<layout>default</layout>
 		</repository>
+		<repository>
+		  <id>central</id>
+		  <url>https://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+		  <id>github</id>
+		  <url>https://maven.pkg.github.com/spsmexico/mulesoft-github-actions-domain</url>
+		  <snapshots>
+		    <enabled>true</enabled>
+		  </snapshots>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
@@ -98,5 +102,13 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+	
+	<distributionManagement>
+  <repository>
+     	<id>github</id>
+     	<name>Github Packages</name>
+     	<url>https://maven.pkg.github.com/spsmexico/mulesoft-github-actions</url>
+   </repository>
+</distributionManagement>
 
 </project>

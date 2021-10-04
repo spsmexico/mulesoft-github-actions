@@ -1,6 +1,6 @@
-name: Mulesoft CI
+name: Mulesoft CI Publish
 on: 
-  pull_request:
+  push:
     branches:  
       - main
 env: 
@@ -8,7 +8,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: desarrollo
+    environment: produccion
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 8
@@ -17,17 +17,15 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
           cache: 'maven'
-          server-id: maven # Value of the distributionManagement/repository/id field of the pom.xml
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           server-username: rortega-sps # env variable for username in deploy
-          server-password: ${{ secrets.PACKAGES_TOKEN }} # env variable for token in deploy
+          server-password: ${{ github.TOKEN }} # env variable for token in deploy
       - name: Construir y probar
         run: |
          mvn --batch-mode verify
          mkdir staging && cp target/*.jar staging
-      #- name: Publish to GitHub Packages Apache Maven
-      #  run: mvn deploy
-      #  env:
-      #    GITHUB_TOKEN: ${{ github.TOKEN }} # GITHUB_TOKEN is the default env for the password
+      - name: Publish to GitHub Packages Apache Maven
+        run: mvn deploy
       - name: Despliegue a desarrollo
         run: |
           mvn deploy -DmuleDeploy -DANYPOINT_TARGET=${{secrets.ANYPOINT_TARGET}} -DANYPOINT_TARGET_TYPE=${{secrets.ANYPOINT_TARGET_TYPE}} -DANYPOINT_USER=${{secrets.ANYPOINT_USER}} -DANYPOINT_PASSWORD=${{secrets.ANYPOINT_PASSWORD}} -DANYPOINT_ENV=${{secrets.ANYPOINT_ENV}} -DPARAMETRO_2=${{secrets.PARAMETRO_2}}
