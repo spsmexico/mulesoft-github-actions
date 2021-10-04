@@ -26,3 +26,6 @@ jobs:
          mkdir staging && cp target/*.jar staging
       - name: Publish to GitHub Packages Apache Maven
         run: mvn deploy
+      - name: Despliegue a desarrollo
+        run: |
+          mvn deploy -DmuleDeploy -DANYPOINT_TARGET=${{secrets.ANYPOINT_TARGET}} -DANYPOINT_TARGET_TYPE=${{secrets.ANYPOINT_TARGET_TYPE}} -DANYPOINT_USER=${{secrets.ANYPOINT_USER}} -DANYPOINT_PASSWORD=${{secrets.ANYPOINT_PASSWORD}} -DANYPOINT_ENV=${{secrets.ANYPOINT_ENV}} -DPARAMETRO_2=${{secrets.PARAMETRO_2}}
